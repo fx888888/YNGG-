@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>潮玩宇宙 — 大逃杀（Demo）</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>潮玩宇宙 — 大逃杀（Demo）</h1>
+      <div class="wallet-row">
+        <button id="connectBtn">连接钱包</button>
+        <div id="addr">未连接</div>
+      </div>
+    </header>
+
+    <main>
+      <section class="game-panel">
+        <div class="left">
+          <canvas id="gameCanvas" width="800" height="480"></canvas>
+          <div class="controls">
+            <input id="matchKey" placeholder="房间名（如 room-1）" />
+            <button id="createBtn">创建房间 (owner)</button>
+            <button id="joinBtn">加入房间（上链付费）</button>
+            <button id="startBtn">开始比赛（owner）</button>
+            <button id="localStartBtn">本地模拟开始</button>
+            <div class="status" id="status">准备就绪</div>
+          </div>
+        </div>
+
+        <aside class="right">
+          <div class="panel">
+            <h3>合约与代币</h3>
+            <div>YNGG 地址: <code id="ynggAddr"></code></div>
+            <div>GameManager 合约: <input id="gmAddr" placeholder="0x..." /></div>
+            <div>当前房间奖池: <span id="prizePool">0</span></div>
+            <div>房间玩家数: <span id="playerCount">0</span></div>
+          </div>
+
+          <div class="panel">
+            <h3>排行榜 (本地)</h3>
+            <ol id="leaderboard"></ol>
+            <button id="refreshBoard">刷新排行榜</button>
+          </div>
+
+          <div class="panel small">
+            <h4>说明</h4>
+            <p>本页面是前端演示：本地可完整模拟大逃杀机制；链上调用仅覆盖：创建房间(joinMatch)、加入房间（transferFrom 收入奖池）、读取房间信息、owner 分配奖励。</p>
+          </div>
+        </aside>
+      </section>
+
+      <footer>
+        <small>测试推荐使用 Core 测试网或本地 Hardhat 节点。上链会消耗 Gas。</small>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
